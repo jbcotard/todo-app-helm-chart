@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: j33b/todo-app
+  pullPolicy: IfNotPresent
+  tag: v0.0.1
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: true
+  hosts:
+    - host: app.devopsbox.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+resources: 
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
